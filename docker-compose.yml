@@ -23,6 +23,15 @@ services:
     container_name: go
     build:
       context: .
+    environment:
+      PORT: "3080"
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_USER: "mkebbehs"
+      DB_PASS: "Zaynxbela1"
+      DB_NAME: "mks_userDB"
+    volumes:
+    - ./:/go/src/mks-login-api-docker   
     depends_on:
       postgres:
         condition: service_healthy # waiting until heathcheck of postgres is good
