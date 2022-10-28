@@ -2,6 +2,9 @@ package main
 
 import (
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/Mariamakbbh/mks_LoginAPI/internal/config"
 	"github.com/Mariamakbbh/mks_LoginAPI/internal/db"
@@ -11,14 +14,14 @@ import (
 )
 
 func main() {
-	c, err := config.LoadConfig()
+	cfg, err := config.LoadConfig()
 
 	if err != nil {
 		log.Fatalln("Failed at config", err)
 	}
 
 	app := fiber.New()
-	db := db.Init(&c)
+	db := db.Init(&cfg)
 
 	// Or extend your config for customization
 	app.Use(cors.New(cors.Config{
@@ -34,5 +37,19 @@ func main() {
 
 	bluePrint.Routes(app)
 
-	app.Listen(c.Port)
+	app.Listen(cfg.Port)
+
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+
+	// Block until we receive our signal.
+	<-c
+
+	// Doesn't block if no connections, but will otherwise wait
+	// until the timeout deadline.
+	// Optionally, you could run srv.Shutdown in a goroutine and block on
+	// <-ctx.Done() if your application should wait for other services
+	// to finalize based on context cancellation.
+	log.Printf("Shutting down")
+	os.Exit(0)
 }
