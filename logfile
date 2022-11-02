@@ -1,0 +1,10 @@
+2022-11-02 10:06:11.317 GMT [31192] LOG:  starting PostgreSQL 15.0 on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2022-11-02 10:06:11.320 GMT [31192] LOG:  listening on IPv6 address "::1", port 5432
+2022-11-02 10:06:11.320 GMT [31192] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2022-11-02 10:06:11.322 GMT [31192] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2022-11-02 10:06:11.347 GMT [31195] LOG:  database system was shut down at 2022-10-31 15:28:16 GMT
+2022-11-02 10:06:11.378 GMT [31192] LOG:  database system is ready to accept connections
+2022-11-02 10:06:23.015 GMT [31243] FATAL:  database "mks_userdb" does not exist
+2022-11-02 10:06:51.292 GMT [31272] FATAL:  database "mks_userdb" does not exist
+2022-11-02 10:11:11.350 GMT [31193] LOG:  checkpoint starting: time
+2022-11-02 10:11:11.382 GMT [31193] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.013 s, sync=0.002 s, total=0.034 s; sync files=2, longest=0.002 s, average=0.001 s; distance=0 kB, estimate=0 kB

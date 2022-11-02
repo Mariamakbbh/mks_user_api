@@ -12,7 +12,7 @@ import (
 )
 
 func Init(c *config.Config) *gorm.DB {
-	url := fmt.Sprintf("postgres://%s:%s@%s:%s/%s", c.DBUser, c.DBPass, c.DBHost, c.DBPort, c.DBName)
+	url := fmt.Sprintf("postgres://%s:root@%s:%s/%s", c.DBUser, c.DBHost, c.DBPort, c.DBName)
 	db, err := gorm.Open(postgres.Open(url), &gorm.Config{})
 
 	if err != nil {

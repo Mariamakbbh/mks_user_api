@@ -2,9 +2,6 @@ package main
 
 import (
 	"log"
-	"os"
-	"os/signal"
-	"syscall"
 
 	"github.com/Mariamakbbh/mks_LoginAPI/internal/config"
 	"github.com/Mariamakbbh/mks_LoginAPI/internal/db"
@@ -39,17 +36,17 @@ func main() {
 
 	app.Listen(cfg.Port)
 
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	// c := make(chan os.Signal, 1)
+	// signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 
-	// Block until we receive our signal.
-	<-c
+	// // Block until we receive our signal.
+	// <-c
 
-	// Doesn't block if no connections, but will otherwise wait
-	// until the timeout deadline.
-	// Optionally, you could run srv.Shutdown in a goroutine and block on
-	// <-ctx.Done() if your application should wait for other services
-	// to finalize based on context cancellation.
-	log.Printf("Shutting down")
-	os.Exit(0)
+	// // Doesn't block if no connections, but will otherwise wait
+	// // until the timeout deadline.
+	// // Optionally, you could run srv.Shutdown in a goroutine and block on
+	// // <-ctx.Done() if your application should wait for other services
+	// // to finalize based on context cancellation.
+	// log.Printf("Shutting down")
+	// os.Exit(0)
 }

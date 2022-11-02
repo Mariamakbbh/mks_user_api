@@ -2,34 +2,32 @@ version: "3.8"
 
 services:
   postgres:
-    container_name: postgres
     image: postgres:14.2
     environment:
       POSTGRES_USER: "mkebbehs"
       POSTGRES_PASSWORD: "Zaynxbela1"
-      POSTGRES_DB: "mks_userDB"
+      POSTGRES_DB: "mks_user_db"
       POSTGRES_HOST_AUTH_METHOD: "trust"
     ports:
       - "5432:5432"
     volumes: 
       - dbdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U mkebbehs -d mks_userDB"]
+      test: ["CMD-SHELL", "pg_isready -U mkebbehs -d mks_user_db"]
       interval: 10s
       timeout: 5s
       retries: 5
 
   go:
-    container_name: go
     build:
       context: .
     environment:
-      PORT: "3080"
+      PORT: "0.0.0.0:3080"
       DB_HOST: "postgres"
       DB_PORT: "5432"
       DB_USER: "mkebbehs"
       DB_PASS: "Zaynxbela1"
-      DB_NAME: "mks_userDB"
+      DB_NAME: "mks_user_db"
     volumes:
     - ./:/go/src/mks-login-api-docker   
     depends_on:
